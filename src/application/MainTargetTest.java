@@ -8,10 +8,11 @@ public class MainTargetTest {
 
 	public static void main(String[] args) {
 		System.out.println("Resposta da questão 1: " + questao1());
+		System.out.println();
 		
 		System.out.print("Favor informar o valor a buscar na sequência Fibonacci: ");
 		int valor = scan.nextInt();
-		if (questao2(valor) == true) {
+		if (questao2(valor)) {
 			System.out.println("Resposta da questão 2: faz parte da sequência Fibonacci.");
 		}
 		else {
@@ -33,29 +34,26 @@ public class MainTargetTest {
 		return soma;
 	}
 	
+	//  QUESTÃO 2
 	public static boolean questao2(int valor) {
 		boolean fazParte = false;
-		int x = 0;
 		
 		ArrayList<Integer> fibonacci = new ArrayList<Integer>();
 		fibonacci.add(0);
 		fibonacci.add(1);
 		
+		int x = 0;
+		
 		while (x < valor) {
-			int count = 2;
-			
-			if (x == valor) {
-				fazParte = true;
-				break;
-			}
-			else if (x > valor) {
-				fazParte = false;
-				break;
-			}
-			else {
-				fibonacci.add((fibonacci.get(count - 1) + fibonacci.get(count - 2)));
-				count++;
-			}
+			fibonacci.add(fibonacci.get(fibonacci.size() - 1) + fibonacci.get(fibonacci.size() - 2));
+			x = fibonacci.get(fibonacci.size() - 1);
+		}
+		
+		if (x == valor) {
+			fazParte = true;
+		}
+		else {
+			fazParte = false;
 		}
 		
 		return fazParte;
